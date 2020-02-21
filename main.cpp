@@ -15,17 +15,17 @@ struct comparator{
 
 
 struct LibraryData{
-    int books;
-    int sign_up_days;
-    int books_per_day;
+    int books=0;
+    int sign_up_days=0;
+    int books_per_day=0;
     bool scan= false;
     vector<int>scannable_books;
 };
 
 int main() {
 
-    ifstream is("../e_so_many_books.txt");
-    ofstream os("../out_e_so_many_books.txt");
+    ifstream is("../b_read_on.txt");
+    ofstream os("../o_b_read_on.txt");
 
     int books_n,lib_n,scan_n,val;
 
@@ -80,7 +80,7 @@ int main() {
             tmp.push_back(tp);
         }
 
-        if (sign_d>scan_n) {
+        if (sign_d>=scan_n) {
 
             continue;
         }
@@ -94,15 +94,16 @@ int main() {
             ld.scannable_books = tmp;
 
 
-        } else{
+            libraries_to_sign_up[j]=ld;
+        } /*else{
 
             ld.books = books;
             ld.sign_up_days = sign_d;
             ld.books_per_day = max_books;
             ld.scan = false;
-        }
+        }*/
 
-        libraries_to_sign_up[j]=ld;
+
 
     }
 
@@ -111,9 +112,13 @@ int main() {
 
 //    cout<<vpair[0].second<<endl;
 
-    os<<libraries_to_sign_up.size();
+//    os<<libraries_to_sign_up.size();
 
     priority_queue <int> pq;
+
+    unordered_map<int, LibraryData> output{};
+
+    int counter=0;
 
     for( auto r : libraries_to_sign_up){
 
@@ -125,19 +130,23 @@ int main() {
 
             if (days+1<=scan_n){
 
-                os<<endl;
+                output[r.first]=r.second;
 
-                os<<r.first<<" "<<r.second.scannable_books.size()<<endl;
+//                os<<endl;
+
+//                os<<r.first<<" "<<r.second.scannable_books.size()<<endl;
 
                 for (int i = 0; i < r.second.scannable_books.size(); ++i) {
 
-                    os<<r.second.scannable_books[i];
+//                    os<<r.second.scannable_books[i];
 
                     if (i+1<r.second.scannable_books.size()){
-                        os<<" ";
+//                        os<<" ";
                     }
 
                 }
+
+                counter++;
 
             }else{
 
@@ -164,18 +173,31 @@ int main() {
                 }
 
                 if (!out.empty()){
-                    os<<endl;
 
-                    os<<r.first<<" "<<out.size()<<endl;
+                    counter++;
+
+//                    os<<endl;
+
+//                    os<<r.first<<" "<<out.size();
+
+                    vector<int> outV;
 
                     for (int k = 0; k <out.size() ; ++k) {
-                        os<<(out[k]);
+
+                        outV.push_back(out[k]+1);
+
+//                        os<<(out[k]);
 
                         if (k+1<out.size()){
-                            os<<" ";
+//                            os<<" ";
                         }
 
                     }
+
+                    LibraryData lld;
+
+                    lld.scannable_books = outV;
+                    output[r.first]=lld;
 
                 }
 
@@ -186,10 +208,29 @@ int main() {
 
     }
 
+
+    os<<counter;
+
+
+    for (auto r: output){
+
+        os<<endl;
+
+        os<<r.first<<" "<<r.second.scannable_books.size()<<endl;
+        for (int i = 0; i <r.second.scannable_books.size() ; ++i) {
+            os<<r.second.scannable_books[i];
+
+            if (i+1<r.second.scannable_books.size()){
+                os<<" ";
+            }
+
+        }
+    }
+
     is.close();
     os.close();
 
-    cout<<"Done ";
+    cout<<"Done "<<counter;
 
     return 0;
 }
