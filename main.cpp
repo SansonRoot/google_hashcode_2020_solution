@@ -125,9 +125,9 @@ int main() {
 
             if (days+1<=scan_n){
 
-                os<<"\n";
+                os<<endl;
 
-                os<<r.first<<" "<<r.second.scannable_books.size()<<"\n";
+                os<<r.first<<" "<<r.second.scannable_books.size()<<endl;
 
                 for (int i = 0; i < r.second.scannable_books.size(); ++i) {
 
@@ -164,9 +164,9 @@ int main() {
                 }
 
                 if (!out.empty()){
-                    os<<"\n";
+                    os<<endl;
 
-                    os<<r.first<<" "<<out.size()<<"\n";
+                    os<<r.first<<" "<<out.size()<<endl;
 
                     for (int k = 0; k <out.size() ; ++k) {
                         os<<(out[k]);
