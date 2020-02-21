@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/hashcode.dir/main.cpp.o  -o hashcode 

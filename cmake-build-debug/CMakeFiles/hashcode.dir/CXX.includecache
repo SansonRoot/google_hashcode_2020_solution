@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/sanson/Personal/HASHCODE/hashcode/main.cpp
+iostream
+-
+algorithm
+-
+fstream
+-
+vector
+-
+unordered_map
+-
+queue
+-
+
