@@ -13,11 +13,6 @@ struct comparator{
     }
 };
 
-struct mComparator{
-    bool operator()(const pair<int, int>& a,const pair<int, int>& b){
-        return a.second > b.second;
-    }
-};
 
 struct LibraryData{
     int books;
@@ -66,8 +61,6 @@ int main() {
 
     //fill up libraries books, sign up days and max books to scan
 
-    int counter=0;
-
     for (int j = 0; j <lib_n ; ++j) {
 
         int books,sign_d,max_books;
@@ -100,7 +93,6 @@ int main() {
             ld.scan = true;
             ld.scannable_books = tmp;
 
-            counter++;
 
         } else{
 
@@ -194,6 +186,7 @@ int main() {
 
     }
 
+    is.close();
     os.close();
 
     cout<<"Done ";
